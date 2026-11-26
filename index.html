@@ -1,8 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
-
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -46,6 +43,44 @@
     }
   </style>
 </head>
+<body>
+  <iframe
+    src="https://www.youtube-nocookie.com/embed/B_oe25p6o2M?mute=1&modestbranding=0&autoplay=1&autohide=1&rel=0&showinfo=0&controls=0&disablekb=1&enablejsapi=1&iv_load_policy=3&loop=1&playsinline=1&fs=0&playlist=B_oe25p6o2M"
+    title="YouTube video player"
+    allow="autoplay; encrypted-media; fullscreen"
+    referrerpolicy="strict-origin-when-cross-origin"
+    allowfullscreen>
+  </iframe>
+
+  <button id="unmute-btn" type="button">🔊 Unmute</button>
+
+  <script>
+    const btn = document.getElementById('unmute-btn');
+    const iframe = document.getElementById('yt-player');
+    let isMuted = true;
+
+    btn.addEventListener('click', () => {
+      const command = isMuted ? 'unMute' : 'mute';
+      iframe.contentWindow.postMessage(
+        JSON.stringify({ event: 'command', func: command, args: [] }),
+        '*'
+      );
+
+      if (isMuted) {
+        iframe.contentWindow.postMessage(
+          JSON.stringify({ event: 'command', func: 'setVolume', args: [100] }),
+          '*'
+        );
+        btn.textContent = '🔇 Mute';
+      } else {
+        btn.textContent = '🔊 Unmute';
+      }
+
+      isMuted = !isMuted;
+    });
+  </script>
+</body>
+</html>
 
 
 
@@ -83,54 +118,12 @@
 
   
 <body>
-  <iframe
-    src="https://www.youtube-nocookie.com/embed/B_oe25p6o2M?mute=1&modestbranding=0&autoplay=1&autohide=1&rel=0&showinfo=0&controls=0&disablekb=1&enablejsapi=1&iv_load_policy=3&loop=1&playsinline=1&fs=0&playlist=B_oe25p6o2M"
-    title="YouTube video player"
-    allow="autoplay; encrypted-media; fullscreen"
-    referrerpolicy="strict-origin-when-cross-origin"
-    allowfullscreen>
-  </iframe>
+'  <iframe
+   ' src="https://www.youtube-nocookie.com/embed/B_oe25p6o2M?mute=1&modestbranding=0&autoplay=1&autohide=1&rel=0&showinfo=0&controls=0&disablekb=1&enablejsapi=1&iv_load_policy=3&loop=1&playsinline=1&fs=0&playlist=B_oe25p6o2M"
+    'title="YouTube video player"
+  '  allow="autoplay; encrypted-media; fullscreen"
+    'referrerpolicy="strict-origin-when-cross-origin"
+  '  allowfullscreen>
+'  </iframe>
 
 
-<button id="unmute-btn" type="button">🔊 Unmute</button>
-
-  <script>
-    const btn = document.getElementById('unmute-btn');
-    const iframe = document.getElementById('yt-player');
-    let isMuted = true;
-
-    btn.addEventListener('click', () => {
-      const command = isMuted ? 'unMute' : 'mute';
-      iframe.contentWindow.postMessage(
-        JSON.stringify({ event: 'command', func: command, args: [] }),
-        '*'
-      );
-
-      if (isMuted) {
-        iframe.contentWindow.postMessage(
-          JSON.stringify({ event: 'command', func: 'setVolume', args: [100] }),
-          '*'
-        );
-        btn.textContent = '🔇 Mute';
-      } else {
-        btn.textContent = '🔊 Unmute';
-      }
-
-      isMuted = !isMuted;
-    });
-  </script>
-
-
-
-
-
-
-
-
-
-
-
-  
-
-</body>
-</html>
