@@ -33,5 +33,47 @@
     referrerpolicy="strict-origin-when-cross-origin"
     allowfullscreen>
   </iframe>
+
+
+<button id="unmute-btn" type="button">🔊 Unmute</button>
+
+  <script>
+    const btn = document.getElementById('unmute-btn');
+    const iframe = document.getElementById('yt-player');
+    let isMuted = true;
+
+    btn.addEventListener('click', () => {
+      const command = isMuted ? 'unMute' : 'mute';
+      iframe.contentWindow.postMessage(
+        JSON.stringify({ event: 'command', func: command, args: [] }),
+        '*'
+      );
+
+      if (isMuted) {
+        iframe.contentWindow.postMessage(
+          JSON.stringify({ event: 'command', func: 'setVolume', args: [100] }),
+          '*'
+        );
+        btn.textContent = '🔇 Mute';
+      } else {
+        btn.textContent = '🔊 Unmute';
+      }
+
+      isMuted = !isMuted;
+    });
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+  
+
 </body>
 </html>
