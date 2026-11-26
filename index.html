@@ -16,122 +16,22 @@
       overflow: hidden;
       background: #000;
     }
-    #player {
+    iframe {
       position: fixed;
       inset: 0;
       width: 100vw;
       height: 100vh;
       border: none;
     }
-    #unmute-btn {
-      position: fixed;
-      bottom: 24px;
-      right: 24px;
-      z-index: 9999;
-      padding: 12px 20px;
-      font-family: Arial, sans-serif;
-      font-size: 16px;
-      font-weight: bold;
-      color: #fff;
-      background: rgba(0, 0, 0, 0.75);
-      border: 2px solid rgba(255, 255, 255, 0.8);
-      border-radius: 8px;
-      cursor: pointer;
-    }
-    #unmute-btn:hover {
-      background: rgba(255, 255, 255, 0.2);
-    }
   </style>
 </head>
 <body>
-  <div id="player"></div>
-  <button id="unmute-btn" type="button">🔊 Unmute</button>
-
-  <script src="https://youtube.com"></script>
-  <script>
-    let player;
-    const btn = document.getElementById('unmute-btn');
-
-    function onYouTubeIframeAPIReady() {
-      player = new YT.Player('player', {
-        host: 'https://youtube-nocookie.com',
-        videoId: 'B_oe25p6o2M',
-        playerVars: {
-          autoplay: 1,
-          mute: 1,
-          controls: 0,
-          rel: 0,
-          disablekb: 1,
-          iv_load_policy: 3,
-          loop: 1,
-          playsinline: 1,
-          fs: 0,
-          playlist: 'B_oe25p6o2M'
-        },
-        events: {
-          onReady: function (event) {
-            event.target.playVideo();
-          }
-        }
-      });
-    }
-
-    btn.addEventListener('click', function () {
-      if (!player || typeof player.unMute !== 'function') return;
-
-      if (player.isMuted()) {
-        player.unMute();
-        player.setVolume(100);
-        btn.textContent = '🔇 Mute';
-      } else {
-        player.mute();
-        btn.textContent = '🔊 Unmute';
-      }
-    });
-  </script>
+  <iframe
+    src="https://www.youtube-nocookie.com/embed/B_oe25p6o2M?mute=1&modestbranding=0&autoplay=1&autohide=1&rel=0&showinfo=0&controls=0&disablekb=1&enablejsapi=1&iv_load_policy=3&loop=1&playsinline=1&fs=0&playlist=B_oe25p6o2M"
+    title="YouTube video player"
+    allow="autoplay; encrypted-media; fullscreen"
+    referrerpolicy="strict-origin-when-cross-origin"
+    allowfullscreen>
+  </iframe>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-<body>
-'  <iframe
-   ' src="https://www.youtube-nocookie.com/embed/B_oe25p6o2M?mute=1&modestbranding=0&autoplay=1&autohide=1&rel=0&showinfo=0&controls=0&disablekb=1&enablejsapi=1&iv_load_policy=3&loop=1&playsinline=1&fs=0&playlist=B_oe25p6o2M"
-    'title="YouTube video player"
-  '  allow="autoplay; encrypted-media; fullscreen"
-    'referrerpolicy="strict-origin-when-cross-origin"
-  '  allowfullscreen>
-'  </iframe>
-
-
